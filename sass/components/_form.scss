@@ -1,0 +1,190 @@
+@use "../abstracts/mixins";
+
+.calculator {
+  background-color: hsl(var(--clr-white));
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-width: 100%;
+
+  @include mixins.respond(tab-port) {
+    min-width: clamp(31.25rem, 70%, 50rem);
+    padding: clamp(2.5rem, 6vw, 3rem) clamp(3rem, 9vw, 5rem);
+    border-radius: 1.5rem;
+    gap: 2.5rem;
+  }
+
+  @include mixins.respond(tab-land) {
+    min-width: clamp(40.625rem, 60%, 68.75rem);
+  }
+
+  @include mixins.respond(desktop) {
+    min-width: clamp(56.25rem, 70%, 75rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    height: 480px;
+    gap: 3rem;
+  }
+
+  // NOTE: FORM
+  &__form {
+    display: grid;
+    gap: 2rem;
+
+    @include mixins.respond(desktop) {
+      gap: 2.5rem;
+      align-items: center;
+    }
+  }
+
+  &__label {
+    font-weight: bold;
+    line-height: 1.5rem;
+  }
+
+  &__input-group {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  &__input-wrapper {
+    background-color: hsl(var(--clr-grey-50));
+    font-size: var(--fs-400);
+    padding: 0.5rem 1rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    border-radius: 5px;
+  }
+
+  &__input--bill {
+    width: 100%;
+  }
+
+  &__currency-symbol {
+    color: hsl(var(--clr-grey-300));
+    // position: absolute;
+  }
+
+  &__input {
+    border: none;
+    background-color: hsl(var(--clr-grey-50));
+    flex: 1;
+    font-size: var(--fs-400);
+    font-weight: bold;
+    text-align: end;
+  }
+
+  &__input::placeholder {
+    color: hsl(var(--clr-grey-300));
+  }
+
+  &__tip-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  &__tip-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+
+    @include mixins.respond(tab-port) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__tip-button {
+    background-color: hsl(var(--clr-green-900));
+    color: hsl(var(--clr-white));
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: var(--fs-400);
+    text-align: center;
+  }
+
+  &__input--custom {
+    background-color: hsl(var(--clr-grey-50));
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: var(--fs-400);
+    text-align: center;
+  }
+
+  &__input--custom::placeholder {
+    color: hsl(var(--clr-grey-550));
+  }
+
+  &__input--people {
+    width: 100%;
+  }
+
+  // NOTE: RESULTS
+  &__results {
+    background-color: hsl(var(--clr-green-900));
+    border-radius: 1.5rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    @include mixins.respond(tab-port) {
+      padding: 1.5rem 2rem;
+    }
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-label {
+      display: flex;
+      flex-direction: column;
+      display: flex;
+      justify-content: center;
+    }
+
+    &-title {
+      color: hsl(var(--clr-white));
+      font-size: var(--fs-200);
+      justify-content: center;
+    }
+
+    &-subtitle {
+      display: block;
+      font-size: var(--fs-100);
+      color: hsl(var(--clr-grey-400));
+    }
+
+    &-value {
+      display: flex;
+      align-items: center;
+      font-size: var(--fs-500);
+      color: hsl(var(--clr-green-400));
+    }
+  }
+
+  &__reset-button {
+    margin-top: 0.5rem;
+    padding: 0.5rem 2rem;
+    text-align: center;
+    color: hsl(var(--clr-green-800));
+    background-color: hsl(var(--clr-green-750));
+    border-radius: 5px;
+    font-size: var(--fs-300);
+
+    @include mixins.respond(desktop) {
+      margin-top: auto;
+    }
+  }
+}

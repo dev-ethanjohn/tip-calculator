@@ -1,0 +1,298 @@
+:root {
+  --clr-white: 0 100% 100%;
+  --clr-black: 0 0% 0%;
+  --clr-grey-600: 180 25% 32%;
+  --clr-grey-550: 180 18% 40%;
+  --clr-grey-500: 184 14% 43%;
+  --clr-grey-400: 184 14% 56%;
+  --clr-grey-300: 184 19% 68%;
+  --clr-grey-200: 185 41% 84%;
+  --clr-grey-50: 189 47% 97%;
+  --clr-green-900: 183 100% 15%;
+  --clr-green-800: 183 85% 21%;
+  --clr-green-750: 183 79% 24%;
+  --clr-green-400: 172 67% 45%;
+  --clr-green-200: 173 61% 77%;
+  --clr-orange-400: 13, 70% 60%;
+  /* font-family */
+  --ff-mono-normal: "Space Mono", monospace;
+  --fs-500: 2rem; /* 32px  */
+  --fs-400: 1.5rem; /* 24px */
+  --fs-300: 1.25rem; /* 20px */
+  --fs-200: 1rem; /* 16px */
+  --fs-100: 0.8125rem; /* 13px */
+}
+
+@media only screen and (min-width: 37.5em) {
+  :root {
+    --fs-500: 3rem; /* 48px */
+  }
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  background-color: hsl(var(--clr-grey-200));
+  min-height: 100vh;
+}
+
+img {
+  /* https://www.youtube.com/watch?v=345V2MU3E_w */
+  font-style: italic;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+p,
+h1,
+h2,
+h3 {
+  overflow-wrap: break-word;
+}
+
+li {
+  list-style-type: none;
+}
+
+button {
+  display: inline;
+  all: unset;
+  cursor: pointer;
+}
+
+body {
+  color: hsl(var(--clr-grey-500));
+  font-family: var(--ff-mono-normal);
+  font-size: var(--fs-200);
+  font-weight: bold;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.calculator__title {
+  font-size: 20px;
+  letter-spacing: 0.5rem;
+  line-height: 2rem;
+  text-align: center;
+  padding: 3rem;
+}
+
+.calculator {
+  background-color: hsl(var(--clr-white));
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-width: 100%;
+}
+@media only screen and (min-width: 37.5em) {
+  .calculator {
+    min-width: clamp(31.25rem, 70%, 50rem);
+    padding: clamp(2.5rem, 6vw, 3rem) clamp(3rem, 9vw, 5rem);
+    border-radius: 1.5rem;
+    gap: 2.5rem;
+  }
+}
+@media only screen and (min-width: 56.25em) {
+  .calculator {
+    min-width: clamp(40.625rem, 60%, 68.75rem);
+  }
+}
+@media only screen and (min-width: 75em) {
+  .calculator {
+    min-width: clamp(56.25rem, 70%, 75rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 2rem;
+    height: 480px;
+    gap: 3rem;
+  }
+}
+.calculator__form {
+  display: grid;
+  gap: 2rem;
+}
+@media only screen and (min-width: 75em) {
+  .calculator__form {
+    gap: 2.5rem;
+    align-items: center;
+  }
+}
+.calculator__label {
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+.calculator__input-group {
+  display: grid;
+  gap: 0.5rem;
+}
+.calculator__input-wrapper {
+  background-color: hsl(var(--clr-grey-50));
+  font-size: var(--fs-400);
+  padding: 0.5rem 1rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  border-radius: 5px;
+}
+.calculator__input--bill {
+  width: 100%;
+}
+.calculator__currency-symbol {
+  color: hsl(var(--clr-grey-300));
+}
+.calculator__input {
+  border: none;
+  background-color: hsl(var(--clr-grey-50));
+  flex: 1;
+  font-size: var(--fs-400);
+  font-weight: bold;
+  text-align: end;
+}
+.calculator__input::placeholder {
+  color: hsl(var(--clr-grey-300));
+}
+.calculator__tip-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.calculator__tip-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+@media only screen and (min-width: 37.5em) {
+  .calculator__tip-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.calculator__tip-button {
+  background-color: hsl(var(--clr-green-900));
+  color: hsl(var(--clr-white));
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: var(--fs-400);
+  text-align: center;
+}
+.calculator__input--custom {
+  background-color: hsl(var(--clr-grey-50));
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-size: var(--fs-400);
+  text-align: center;
+}
+.calculator__input--custom::placeholder {
+  color: hsl(var(--clr-grey-550));
+}
+.calculator__input--people {
+  width: 100%;
+}
+.calculator__results {
+  background-color: hsl(var(--clr-green-900));
+  border-radius: 1.5rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media only screen and (min-width: 37.5em) {
+  .calculator__results {
+    padding: 1.5rem 2rem;
+  }
+}
+.calculator__results-row {
+  display: flex;
+  justify-content: space-between;
+}
+.calculator__results-label {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+}
+.calculator__results-title {
+  color: hsl(var(--clr-white));
+  font-size: var(--fs-200);
+  justify-content: center;
+}
+.calculator__results-subtitle {
+  display: block;
+  font-size: var(--fs-100);
+  color: hsl(var(--clr-grey-400));
+}
+.calculator__results-value {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-500);
+  color: hsl(var(--clr-green-400));
+}
+.calculator__reset-button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  color: hsl(var(--clr-green-800));
+  background-color: hsl(var(--clr-green-750));
+  border-radius: 5px;
+  font-size: var(--fs-300);
+}
+@media only screen and (min-width: 75em) {
+  .calculator__reset-button {
+    margin-top: auto;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100%;
+}
+@media only screen and (min-width: 37.5em) {
+  main {
+    margin-bottom: 12vw;
+  }
+}
+@media only screen and (min-width: 56.25em) {
+  main {
+    margin-bottom: 15vw;
+  }
+}
+@media only screen and (min-width: 75em) {
+  main {
+    margin-bottom: 5vw;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */

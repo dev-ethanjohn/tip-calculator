@@ -1,0 +1,9 @@
+@use "../abstracts/mixins" as *;
+
+body {
+  color: hsl(var(--clr-grey-500));
+  font-family: var(--ff-mono-normal);
+  font-size: var(--fs-200);
+
+  font-weight: bold;
+}

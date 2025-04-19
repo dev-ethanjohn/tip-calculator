@@ -1,0 +1,20 @@
+@use "../abstracts/mixins";
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100%;
+
+  @include mixins.respond(tab-port) {
+    margin-bottom: 12vw;
+  }
+
+  @include mixins.respond(tab-land) {
+    margin-bottom: 15vw;
+  }
+
+  @include mixins.respond(desktop) {
+    margin-bottom: 5vw;
+  }
+}

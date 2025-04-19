@@ -1,44 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
   <title>Frontend Mentor | Tip calculator app</title>
-
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
+
 <body>
+  <main>
+    <h1 class="calculator__title">
+      <span>SPLI</span><br>
+      <span>TTER</span>
+    </h1>
 
-  Bill
 
-  Select Tip %
-  5%
-  10%
-  15%
-  25%
-  50%
-  Custom
+    <div class="calculator">
+      <form class="calculator__form" id="tipCalculatorForm">
 
-  Number of People
+        <!-- *INPUT BILL -->
+        <div class="calculator__input-group">
+          <label for="bill" class="calculator__label">Bill</label>
+          <div class="calculator__input-wrapper">
 
-  Tip Amount
-  / person
+            <img class="calculator__currency-symbol" src="./images/icon-dollar.svg" aria-hidden="true">
+            <input type="number" id="bill" class="calculator__input calculator__input--bill" placeholder="0.00" min="0"
+              step="0.01" aria-label="Bill amount" required>
+          </div>
+        </div>
 
-  Total
-  / person
+        <!--*TIP PERCENTAGE SELECTION -->
+        <div class="calculator__input-group">
+          <fieldset class="calculator__tip-fieldset">
+            <legend class="calculator__label">Select Tip %</legend>
+            <div class="calculator__tip-grid">
+              <div class="calculator__tip-option">
+                <input type="radio" id="tip5" name="tipPercentage" value="5"
+                  class="calculator__tip-input visually-hidden">
+                <label for="tip5" class="calculator__tip-button">5%</label>
+              </div>
 
-  Reset
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+              <div class="calculator__tip-option">
+                <input type="radio" id="tip10" name="tipPercentage" value="10"
+                  class="calculator__tip-input visually-hidden">
+                <label for="tip10" class="calculator__tip-button">10%</label>
+              </div>
+
+              <div class="calculator__tip-option">
+                <input type="radio" id="tip15" name="tipPercentage" value="15"
+                  class="calculator__tip-input visually-hidden" checked>
+                <label for="tip15" class="calculator__tip-button">15%</label>
+              </div>
+
+              <div class="calculator__tip-option">
+                <input type="radio" id="tip25" name="tipPercentage" value="25"
+                  class="calculator__tip-input visually-hidden">
+                <label for="tip25" class="calculator__tip-button">25%</label>
+              </div>
+
+              <div class="calculator__tip-option">
+                <input type="radio" id="tip50" name="tipPercentage" value="50"
+                  class="calculator__tip-input visually-hidden">
+                <label for="tip50" class="calculator__tip-button">50%</label>
+              </div>
+
+              <div class="calculator__tip-option">
+                <input type="number" id="tipCustom" class="calculator__input calculator__input--custom"
+                  placeholder="Custom" min="0" max="100" aria-label="Custom tip percentage">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- * INPUT NUMBER OF PEOPLE -->
+        <div class="calculator__input-group">
+          <label for="people" class="calculator__label">Number of People</label>
+          <div class="calculator__input-wrapper">
+            <img class="calculator__person-icon" src="./images/icon-person.svg" aria-hidden="true">
+            <input type="number" id="people" class="calculator__input calculator__input--people" placeholder="1" min="1"
+              step="1" aria-label="Number of people" required>
+          </div>
+          <div class="calculator__error-message" id="peopleError" aria-live="polite"></div>
+        </div>
+      </form>
+
+      <!-- *dISPLAY RESULT -->
+      <div class="calculator__results">
+
+        <div class="calculator__results-row">
+          <div class="calculator__results-label">
+            <span class="calculator__results-title">Tip Amount</span>
+            <span class="calculator__results-subtitle">/ person</span>
+          </div>
+          <div class="calculator__results-value" aria-live="polite">
+            <output for="bill tipPercentage people" class="calculator__amount" id="tipAmount">$0.00</output>
+          </div>
+        </div>
+
+        <div class="calculator__results-row">
+          <div class="calculator__results-label">
+            <h2 class="calculator__results-title">Total</h2>
+            <span class="calculator__results-subtitle">/ person</span>
+          </div>
+          <div class="calculator__results-value" aria-live="polite">
+            <output for="bill tipPercentage people" class="calculator__amount" id="totalAmount">$0.00</output>
+          </div>
+        </div>
+
+        <button type="button" class="calculator__reset-button" id="resetButton">
+          RESET
+        </button>
+      </div>
+    </div>
+  </main>
 </body>
+
 </html>
