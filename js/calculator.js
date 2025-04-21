@@ -1,5 +1,6 @@
 import { DOM } from "./dom.js";
 import { Handlers } from "./handlers.js";
+import { Validation } from "./validation.js";
 
 let selectedTip = 15;
 
@@ -26,7 +27,7 @@ const Calculator = {
   },
 
   updateTotal() {
-    const billValue = parseFloat(DOM.bill.value);
+    const billValue = Validation.getBillValue();
     const numPeople = DOM.numberOfPeople.value.trim();
     const { total, tip } = this.calculate(billValue, selectedTip, numPeople);
 

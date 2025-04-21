@@ -8,7 +8,21 @@ const Validation = {
   },
 
   isPeopleValid(value) {
-    return /^[1-9]\d*$/.test(value);
+    return /^[1-9]\d*$/.test(value) && parseFloat(value) > 0;
+  },
+
+  getBillValue() {
+    const billValue = DOM.bill.value.trim();
+    return this.isBillValid(billValue) && billValue !== ""
+      ? parseFloat(billValue)
+      : 0;
+  },
+
+  getPeopleValue() {
+    const peopleValue = DOM.numberOfPeople.value.trim();
+    return this.isPeopleValid(peopleValue) && peopleValue !== ""
+      ? parseInt(peopleValue)
+      : 0;
   },
 
   validateBillInput(inputElement) {
@@ -37,7 +51,7 @@ const Validation = {
 
     if (!isValid) {
       inputElement.classList.add("input-error");
-      inputElement.classList.remove("input-active");
+      // inputElement.classList.remove("input-active");
       DOM.peopleError.textContent = "Must be greater than 0";
 
       wrapper?.classList.add("input-bounce");
@@ -46,9 +60,9 @@ const Validation = {
     }
 
     inputElement.classList.remove("input-error");
-    if (document.activeElement === inputElement) {
-      inputElement.classList.add("input-active");
-    }
+    // if (document.activeElement === inputElement) {
+    //   inputElement.classList.add("input-active");
+    // }
     DOM.peopleError.textContent = "";
     return true;
   },

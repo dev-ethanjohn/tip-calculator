@@ -72,47 +72,54 @@ const Handlers = {
 
   //* NOTE: ENABLE/DISABLE RESET based on current state
   toggleResetButton() {
-    const isNonZeroResults =
-      DOM.totalTipPerPerson.textContent !== "$0.00" &&
-      DOM.totalBillPerPerson.textContent !== "$0.00";
+    const billValue = Validation.getBillValue();
+    const peopleValue = Validation.getPeopleValue();
 
-    const isValidPeople = Validation.isPeopleValid(
-      DOM.numberOfPeople.value.trim()
-    );
-    const isValidBill = Validation.isBillValid(DOM.bill.value.trim());
+    const shouldBeActive = billValue > 0 && peopleValue > 0;
 
-    const shouldBeActive = isNonZeroResults && isValidPeople && isValidBill;
+    DOM.resetButton.disabled = !shouldBeActive;
 
-    DOM.resetButton.disabled = !shouldBeActive; //!NOTE: DISABLED
-
-    // *add active styling if enabled
-    shouldBeActive
-      ? DOM.resetButton.classList.add("is-active")
-      : DOM.resetButton.classList.remove("is-active");
+    if (shouldBeActive) {
+      DOM.resetButton.classList.add("is-active");
+    } else {
+      DOM.resetButton.classList.remove("is-active");
+    }
   },
 
   handleBillInput() {
-    //* If the bill input is invalid, do not update the totals UI
-    if (!Validation.validateBillInput(DOM.bill)) {
-      DOM.totalBillPerPerson.textContent = "$0.00";
-      DOM.totalTipPerPerson.textContent = "$0.00";
-      return;
-    }
+    Validation.validateBillInput(DOM.bill);
 
-    //* set value to 1 regardless if
-    if (DOM.numberOfPeople.value.trim() === "") {
+    const billValue = DOM.bill.value.trim();
+    const isValidBill = Validation.isBillValid(billValue) && billValue !== "";
+
+    if (isValidBill && DOM.numberOfPeople.value.trim() === "") {
       DOM.numberOfPeople.value = "1";
       Validation.validatePeopleInput(DOM.numberOfPeople);
     }
 
-    // IMPORTANT: making sure new amounts are displayed
     Calculator.updateTotal();
+    Handlers.toggleResetButton();
   },
 
   handlePeopleInput() {
     Validation.validatePeopleInput(DOM.numberOfPeople);
 
-    // IMPORTANT: making sure new amounts are displayed
+    const peopleValue = DOM.numberOfPeople.value.trim();
+
+    if (peopleValue !== "") {
+      if (!Validation.isPeopleValid(peopleValue)) {
+        DOM.numberOfPeople.value = "1";
+        Handlers.toggleResetButton(false);
+        Validation.validatePeopleInput(DOM.numberOfPeople);
+      } else {
+        Handlers.toggleResetButton(true);
+        DOM.peopleError.textContent = "";
+      }
+    } else {
+      Handlers.toggleResetButton(false);
+      DOM.peopleError.textContent = "Must be greater than 0";
+    }
+
     Calculator.updateTotal();
   },
 
@@ -224,7 +231,7 @@ const Handlers = {
       inputErrorFeedback({
         wrapper,
         errorElement: DOM.peopleError,
-        message: "Only numbers allowed",
+        message: "Only valid number allowed",
       });
       return;
     }
