@@ -1,0 +1,68 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.calculator__input--custom.is-active {
+  background-color: hsl(var(--clr-green-200));
+  color: hsl(var(--clr-green-900));
+  font-weight: bold;
+}
+
+// ERROR
+
+input {
+  outline: none;
+}
+
+input.input-active {
+  outline: 2px solid hsl(var(--clr-green-400));
+  border-radius: 3px;
+}
+
+input.input-error {
+  outline: 2px solid red;
+  border-radius: 3px;
+}
+
+.calculator__error-message {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  transition: opacity 0.2s ease;
+}
+
+.calculator__input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.input-bounce {
+  animation: input-bounce 0.25s ease;
+}
+
+@keyframes input-bounce {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

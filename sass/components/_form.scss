@@ -57,6 +57,7 @@
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 1rem;
     min-width: 0;
     border-radius: 5px;
   }
@@ -107,8 +108,13 @@
     display: block;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    font-size: var(--fs-400);
-    text-align: center;
+    font-size: var(--fs-200);
+    text-align: start;
+
+    &:hover {
+      background-color: hsl(var(--clr-green-400));
+      color: hsl(var(--clr-green-900));
+    }
   }
 
   &__input--custom {
@@ -117,7 +123,7 @@
     height: 100%;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    font-size: var(--fs-400);
+    font-size: var(--fs-200);
     text-align: center;
   }
 
@@ -127,6 +133,11 @@
 
   &__input--people {
     width: 100%;
+  }
+
+  &__label-row {
+    display: flex;
+    justify-content: space-between;
   }
 
   // NOTE: RESULTS
@@ -179,12 +190,49 @@
     padding: 0.5rem 2rem;
     text-align: center;
     color: hsl(var(--clr-green-800));
-    background-color: hsl(var(--clr-green-750));
     border-radius: 5px;
     font-size: var(--fs-300);
+    transition: background-color 0.2s ease; // Optional, smoothens hover/active
+
+    &.is-active {
+      background-color: hsl(var(--clr-green-400));
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    &:hover:not(:disabled) {
+      background-color: hsl(var(--clr-green-400) / 0.8);
+    }
+
+    &:active:not(:disabled) {
+      background-color: hsl(var(--clr-green-200));
+    }
+
+    &:disabled {
+      background-color: hsl(var(--clr-green-750));
+      cursor: not-allowed;
+    }
 
     @include mixins.respond(desktop) {
       margin-top: auto;
     }
+
+    // -webkit-tap-highlight-color: transparent;
+  }
+
+  &__error-message {
+    color: orange;
+    font-size: 0.85rem;
+    max-height: auto;
   }
 }
+
+input[type="radio"]:checked + .calculator__tip-button {
+  background-color: hsl(var(--clr-green-200));
+  color: hsl(var(--clr-green-900));
+}
+
+// .input-active {
+//   outline: 2px solid hsl(var(--clr-green-400));
+//   border-radius: 2px;
+// }

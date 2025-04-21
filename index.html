@@ -30,7 +30,16 @@
 
         <!-- *INPUT BILL -->
         <div class="calculator__input-group">
-          <label for="bill" class="calculator__label">Bill</label>
+          <div class="calculator__label-row">
+            <label for="bill" class="calculator__label">Bill</label>
+            <span class="calculator__error-message" id="billError" aria-live="polite"></span>
+          </div>
+
+
+          <!-- <div class="calculator__label-row">
+          <label for="people" class="calculator__label">Number of People</label>
+          <span class="calculator__error-message" id="peopleError" aria-live="polite"></span>
+        </div> -->
           <div class="calculator__input-wrapper">
 
             <img class="calculator__currency-symbol" src="./images/icon-dollar.svg" aria-hidden="true">
@@ -84,13 +93,17 @@
 
         <!-- * INPUT NUMBER OF PEOPLE -->
         <div class="calculator__input-group">
-          <label for="people" class="calculator__label">Number of People</label>
+          <div class="calculator__label-row">
+            <label for="people" class="calculator__label">Number of People</label>
+            <span class="calculator__error-message" id="peopleError" aria-live="polite"></span>
+          </div>
+
           <div class="calculator__input-wrapper">
             <img class="calculator__person-icon" src="./images/icon-person.svg" aria-hidden="true">
             <input type="number" id="people" class="calculator__input calculator__input--people" placeholder="1" min="1"
-              step="1" aria-label="Number of people" required>
+              maxlength="9" inputmode="numeric" pattern="^[1-9]\d*$" step="1" aria-label="Number of people" required>
           </div>
-          <div class="calculator__error-message" id="peopleError" aria-live="polite"></div>
+
         </div>
       </form>
 
@@ -117,12 +130,14 @@
           </div>
         </div>
 
-        <button type="button" class="calculator__reset-button" id="resetButton">
+        <button type="button" class="calculator__reset-button" id="resetButton" disabled>
           RESET
         </button>
       </div>
     </div>
   </main>
+
+  <script type="module" src="js/main.js"></script>
 </body>
 
 </html>

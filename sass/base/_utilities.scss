@@ -8,3 +8,21 @@
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+.calculator__input--custom.is-active {
+  background-color: hsl(var(--clr-green-200));
+  color: hsl(var(--clr-green-900));
+  font-weight: bold;
+}
+
+// .active-reset {
+//   background-color: red !important;
+//   color: white;
+//   transition: background-color 0.3s ease;
+// }
+
+#resetButton.calculator__reset-button.is-active {
+  background-color: red !important;
+  cursor: pointer;
+  opacity: 1 !important;
+}
